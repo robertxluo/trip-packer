@@ -5,8 +5,10 @@
   "repository": "https://github.com/robertxluo/trip-packer.git",
   "author": "Robert Luo <robertxluo@gmail.com>",
   "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack-dev-server --open"
+    "build": "NODE_ENV=production npm run build:css && webpack",
+    "dev": "NODE_ENV=development npm run watch:css && webpack-dev-server --open",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "license": "MIT",
   "dependencies": {
@@ -19,9 +21,12 @@
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
     "@babel/preset-react": "^7.10.1",
+    "autoprefixer": "^9.8.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "postcss-cli": "^7.1.1",
     "style-loader": "^1.2.1",
+    "tailwindcss": "^1.4.6",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
