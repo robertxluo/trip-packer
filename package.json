@@ -1,0 +1,8 @@
+{
+  "name": "trip-packer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/robertxluo/trip-packer.git",
+  "author": "Robert Luo <robertxluo@gmail.com>",
+  "license": "MIT"
+}
