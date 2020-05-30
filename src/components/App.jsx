@@ -2,12 +2,12 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 import '../assets/main.css';
 
-import Header from './Header.jsx';
+import Navbar from './Navbar.jsx';
 
 const App = () => {
   return (
     <div className="">
-      <Header />
+      <Navbar />
     </div>
   );
 };

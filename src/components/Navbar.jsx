@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const Navbar = () => {
   return (
     <div className="mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center border-b-2">
       <a className="flex title-font font-medium items-center text-green-400 mb-4 md:mb-0">
@@ -14,4 +14,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
