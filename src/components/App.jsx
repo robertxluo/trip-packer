@@ -13,6 +13,7 @@ const itemsDummy = [
     date: '2019-05-30T17:30:31.098Z',
     checked: false,
     edit: false,
+    isHovering: false,
   },
   {
     id: nextId(),
@@ -20,6 +21,7 @@ const itemsDummy = [
     date: '2019-05-30T18:39:34.091Z',
     checked: false,
     edit: false,
+    isHovering: false,
   },
   {
     id: nextId(),
@@ -27,6 +29,7 @@ const itemsDummy = [
     date: '2019-05-30T19:20:14.298Z',
     checked: false,
     edit: false,
+    isHovering: false,
   },
 ];
 
@@ -42,6 +45,7 @@ const App = () => {
       date: new Date(),
       checked: false,
       edit: false,
+      isHovering: false,
     };
     setItems(items.concat(newItem));
     setContent('');
@@ -49,9 +53,7 @@ const App = () => {
 
   const handleItemEdit = (itemId, event) => {
     const itemsCopy = [...items];
-
     const item = itemsCopy.find((obj) => obj.id === itemId);
-
     const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
     itemsCopy[itemIndex].content = event.target.value;
     setItems(itemsCopy);
@@ -59,9 +61,7 @@ const App = () => {
 
   const handleItemDelete = (itemId) => {
     const itemsCopy = [...items];
-
     const filteredItems = itemsCopy.filter((obj) => obj.id !== itemId);
-
     setItems(filteredItems);
   };
 
@@ -69,9 +69,15 @@ const App = () => {
     const itemsCopy = [...items];
     const item = itemsCopy.find((obj) => obj.id === itemId);
     const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
-
     itemsCopy[itemIndex].edit = !itemsCopy[itemIndex].edit;
+    setItems(itemsCopy);
+  };
 
+  const handleMouseHover = (itemId, hover) => {
+    const itemsCopy = [...items];
+    const item = itemsCopy.find((obj) => obj.id === itemId);
+    const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
+    itemsCopy[itemIndex].isHovering = hover;
     setItems(itemsCopy);
   };
 
@@ -98,7 +104,14 @@ const App = () => {
           </button>
         </form>
         <div className="flex py-4 justify-evenly">
-          <Card items={items} title="Paris Trip" handleEdit={handleItemEdit} handleDelete={handleItemDelete} toggleEditInput={toggleEditInput} />
+          <Card
+            items={items}
+            title="Paris Trip"
+            handleHover={handleMouseHover}
+            handleEdit={handleItemEdit}
+            handleDelete={handleItemDelete}
+            toggleEditInput={toggleEditInput}
+          />
         </div>
       </div>
     </div>
