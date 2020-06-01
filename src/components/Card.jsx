@@ -16,7 +16,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
   };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-100">
+    <div className="max-w-full rounded overflow-hidden shadow-lg bg-gray-100">
       <div className="px-6 py-4">
         <Title text={title} />
         <ul>
