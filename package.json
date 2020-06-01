@@ -15,7 +15,8 @@
     "postcss-import": "^12.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hot-loader": "^4.12.21"
+    "react-hot-loader": "^4.12.21",
+    "react-id-generator": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",

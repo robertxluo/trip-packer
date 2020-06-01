@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { hot } from 'react-hot-loader';
+import nextId from 'react-id-generator';
 import '../assets/styles/main.css';
 
 import Navbar from './Navbar.jsx';
@@ -7,38 +8,64 @@ import Card from './Card.jsx';
 
 const itemsDummy = [
   {
-    id: 1,
+    id: nextId(),
     content: 'Backpack',
     date: '2019-05-30T17:30:31.098Z',
     checked: false,
+    edit: false,
   },
   {
-    id: 2,
+    id: nextId(),
     content: 'Toothbrush',
     date: '2019-05-30T18:39:34.091Z',
     checked: false,
+    edit: false,
   },
   {
-    id: 3,
+    id: nextId(),
     content: 'Phone',
     date: '2019-05-30T19:20:14.298Z',
     checked: false,
+    edit: false,
   },
 ];
 
 const App = () => {
   const [items, setItems] = useState(itemsDummy);
   const [content, setContent] = useState('');
+  const [editInput, setEditInput] = useState(false);
 
   const addItem = (event) => {
     event.preventDefault();
     const newItem = {
+      id: nextId(),
       content,
       date: new Date(),
       checked: false,
+      edit: false,
     };
     setItems(items.concat(newItem));
     setContent('');
+  };
+
+  const handleItemEdit = (itemId, event) => {
+    const itemsCopy = [...items];
+
+    const item = itemsCopy.find((obj) => obj.id === itemId);
+
+    const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
+    itemsCopy[itemIndex].content = event.target.value;
+    setItems(itemsCopy);
+  };
+
+  const toggleEditInput = (itemId) => {
+    const itemsCopy = [...items];
+    const item = itemsCopy.find((obj) => obj.id === itemId);
+    const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
+
+    itemsCopy[itemIndex].edit = !itemsCopy[itemIndex].edit;
+
+    setItems(itemsCopy);
   };
 
   return (
@@ -64,7 +91,7 @@ const App = () => {
           </button>
         </form>
         <div className="flex py-4 justify-evenly">
-          <Card items={items} title="Paris Trip" />
+          <Card items={items} title="Paris Trip" handleEdit={handleItemEdit} editInput={editInput} toggleEditInput={toggleEditInput} />
         </div>
       </div>
     </div>
