@@ -58,6 +58,14 @@ const App = () => {
     setItems(itemsCopy);
   };
 
+  const handleItemDelete = (itemId) => {
+    const itemsCopy = [...items];
+
+    const filteredItems = itemsCopy.filter((obj) => obj.id !== itemId);
+
+    setItems(filteredItems);
+  };
+
   const toggleEditInput = (itemId) => {
     const itemsCopy = [...items];
     const item = itemsCopy.find((obj) => obj.id === itemId);
@@ -91,7 +99,14 @@ const App = () => {
           </button>
         </form>
         <div className="flex py-4 justify-evenly">
-          <Card items={items} title="Paris Trip" handleEdit={handleItemEdit} editInput={editInput} toggleEditInput={toggleEditInput} />
+          <Card
+            items={items}
+            title="Paris Trip"
+            handleEdit={handleItemEdit}
+            handleDelete={handleItemDelete}
+            editInput={editInput}
+            toggleEditInput={toggleEditInput}
+          />
         </div>
       </div>
     </div>
