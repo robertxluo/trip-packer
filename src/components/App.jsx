@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { hot } from 'react-hot-loader';
-import '../assets/main.css';
+import '../assets/styles/main.css';
 
 import Navbar from './Navbar.jsx';
 import Card from './Card.jsx';

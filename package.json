@@ -7,8 +7,8 @@
   "scripts": {
     "build": "NODE_ENV=production npm run build:css && webpack",
     "dev": "NODE_ENV=development npm run watch:css && webpack-dev-server --open",
-    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "build:css": "postcss src/assets/styles/tailwind.css -o src/assets/styles/main.css",
+    "watch:css": "postcss src/assets/styles/tailwind.css -o src/assets/styles/main.css"
   },
   "license": "MIT",
   "dependencies": {
