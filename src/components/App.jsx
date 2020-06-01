@@ -33,7 +33,6 @@ const itemsDummy = [
 const App = () => {
   const [items, setItems] = useState(itemsDummy);
   const [content, setContent] = useState('');
-  const [editInput, setEditInput] = useState(false);
 
   const addItem = (event) => {
     event.preventDefault();
@@ -99,14 +98,7 @@ const App = () => {
           </button>
         </form>
         <div className="flex py-4 justify-evenly">
-          <Card
-            items={items}
-            title="Paris Trip"
-            handleEdit={handleItemEdit}
-            handleDelete={handleItemDelete}
-            editInput={editInput}
-            toggleEditInput={toggleEditInput}
-          />
+          <Card items={items} title="Paris Trip" handleEdit={handleItemEdit} handleDelete={handleItemDelete} toggleEditInput={toggleEditInput} />
         </div>
       </div>
     </div>
