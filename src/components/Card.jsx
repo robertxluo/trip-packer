@@ -26,9 +26,19 @@ const Card = ({ items, title, handleEdit, handleDelete, toggleEditInput }) => {
             }
             return (
               <li className="flex items-center" key={item.id}>
-                {!item.edit && item.content}
+                {!item.edit && (
+                  <span onClick={() => toggleEditInput(item.id)} className="cursor-pointer">
+                    {item.content}
+                  </span>
+                )}
                 {item.edit && (
-                  <input value={item.content} onKeyPress={(event) => handleKeyPress(event, item.id)} onChange={() => handleEdit(item.id, event)} />
+                  <input
+                    autoFocus
+                    className="shadow w-full appearance-none border rounded py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    value={item.content}
+                    onKeyPress={(event) => handleKeyPress(event, item.id)}
+                    onChange={() => handleEdit(item.id, event)}
+                  />
                 )}
                 <svg
                   onClick={() => toggleEditInput(item.id)}
