@@ -24,7 +24,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
             {
               item.content === '' && !item.edit && deleteIfEmpty(item.id);
             }
-            const lineThrough = item.checked ? 'line-through cursor-pointer' : 'cursor-pointer';
+            const lineThrough = item.checked ? 'line-through cursor-pointer text-lg' : 'cursor-pointer text-lg';
             return (
               <li
                 onMouseEnter={() => handleHover(item.id, true)}
@@ -32,7 +32,9 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
                 className="flex items-center mb-2"
                 key={item.id}
               >
-                <input className="mr-2 leading-tight cursor-pointer" type="checkbox" checked={item.checked} onChange={() => toggleCheck(item.id)} />
+                {!item.edit && (
+                  <input className="mr-2 leading-tight cursor-pointer" type="checkbox" checked={item.checked} onChange={() => toggleCheck(item.id)} />
+                )}
                 {!item.edit && (
                   <div onClick={() => toggleEditInput(item.id)} className={lineThrough}>
                     {item.content}
@@ -51,7 +53,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
                   <>
                     <svg
                       onClick={() => toggleEditInput(item.id)}
-                      className="ml-2 w-3 h-3 cursor-pointer"
+                      className="ml-2 w-4 h-4 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >
@@ -60,7 +62,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
 
                     <svg
                       onClick={() => handleDelete(item.id)}
-                      className="ml-2 w-3 h-3 cursor-pointer"
+                      className="ml-2 w-4 h-4 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >
