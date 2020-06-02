@@ -79,7 +79,6 @@ const App = () => {
     const item = itemsCopy.find((obj) => obj.id === itemId);
     const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
     itemsCopy[itemIndex].checked = !itemsCopy[itemIndex].checked;
-    console.log('items ->', items);
     setItems(itemsCopy);
   };
 
