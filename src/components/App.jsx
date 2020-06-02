@@ -74,6 +74,15 @@ const App = () => {
     setItems(itemsCopy);
   };
 
+  const toggleCheck = (itemId) => {
+    const itemsCopy = [...items];
+    const item = itemsCopy.find((obj) => obj.id === itemId);
+    const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
+    itemsCopy[itemIndex].checked = !itemsCopy[itemIndex].checked;
+    console.log('items ->', items);
+    setItems(itemsCopy);
+  };
+
   const handleMouseHover = (itemId, hover) => {
     const itemsCopy = [...items];
     const item = itemsCopy.find((obj) => obj.id === itemId);
@@ -95,6 +104,7 @@ const App = () => {
             handleEdit={handleItemEdit}
             handleDelete={handleItemDelete}
             toggleEditInput={toggleEditInput}
+            toggleCheck={toggleCheck}
           />
         </div>
       </div>

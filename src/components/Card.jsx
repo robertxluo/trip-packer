@@ -4,7 +4,7 @@ const Title = ({ text }) => {
   return <h1 className="font-bold text-xl mb-2 text-center">{text}</h1>;
 };
 
-const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditInput }) => {
+const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditInput, toggleCheck }) => {
   const handleKeyPress = (event, itemId) => {
     if (event.key === 'Enter') {
       toggleEditInput(itemId);
@@ -24,15 +24,17 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
             {
               item.content === '' && !item.edit && deleteIfEmpty(item.id);
             }
+            const lineThrough = item.checked ? 'line-through cursor-pointer' : 'cursor-pointer';
             return (
               <li
                 onMouseEnter={() => handleHover(item.id, true)}
                 onMouseLeave={() => handleHover(item.id, false)}
-                className="flex items-center"
+                className="flex items-center mb-2"
                 key={item.id}
               >
+                <input className="mr-2 leading-tight cursor-pointer" type="checkbox" checked={item.checked} onChange={() => toggleCheck(item.id)} />
                 {!item.edit && (
-                  <div onClick={() => toggleEditInput(item.id)} className="cursor-pointer">
+                  <div onClick={() => toggleEditInput(item.id)} className={lineThrough}>
                     {item.content}
                   </div>
                 )}
