@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { hot } from 'react-hot-loader';
 import nextId from 'react-id-generator';
 import '../assets/styles/main.css';
@@ -35,8 +35,12 @@ const itemsDummy = [
 ];
 
 const App = () => {
-  const [items, setItems] = useState(itemsDummy);
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || itemsDummy);
   const [content, setContent] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   const addItem = (event) => {
     event.preventDefault();
