@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Router } from '@reach/router';
 import { hot } from 'react-hot-loader';
 import nextId from 'react-id-generator';
 import '../assets/styles/main.css';
 
 import Navbar from './Navbar.jsx';
+import Home from './Home.jsx';
 import MainContainer from './MainContainer.jsx';
 
 const itemsDummy = [
@@ -38,13 +39,10 @@ const App = () => {
   return (
     <div className="">
       <Navbar />
-      {/* <MainContainer itemsDummy={itemsDummy} /> */}
-      <Switch>
-        <Route path="/main">
-          <MainContainer itemsDummy={itemsDummy} />
-        </Route>
-        <Route path="/">Home</Route>
-      </Switch>
+      <Router>
+        <Home path="/">Home</Home>
+        <MainContainer path="main" itemsDummy={itemsDummy} />
+      </Router>
     </div>
   );
 };
