@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Title = ({ text }) => {
-  return <h1 className="font-bold text-xl mb-2 text-center">{text}</h1>;
+  return <h1 className="mb-2 text-xl font-bold text-center">{text}</h1>;
 };
 
 const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditInput, toggleCheck }) => {
@@ -16,7 +16,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
   };
 
   return (
-    <div className="max-w-full rounded overflow-hidden shadow-lg bg-gray-100">
+    <div className="max-w-full overflow-hidden bg-gray-100 rounded shadow-lg">
       <div className="px-6 py-4">
         <Title text={title} />
         <ul>
@@ -43,7 +43,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
                 {item.edit && (
                   <input
                     autoFocus
-                    className="shadow w-full appearance-none border rounded py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-1 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     value={item.content}
                     onKeyPress={(event) => handleKeyPress(event, item.id)}
                     onChange={() => handleEdit(item.id, event)}
@@ -53,7 +53,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
                   <>
                     <svg
                       onClick={() => toggleEditInput(item.id)}
-                      className="ml-2 w-4 h-4 cursor-pointer"
+                      className="w-4 h-4 ml-2 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >
@@ -62,7 +62,7 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
 
                     <svg
                       onClick={() => handleDelete(item.id)}
-                      className="ml-2 w-4 h-4 cursor-pointer"
+                      className="w-4 h-4 ml-2 cursor-pointer"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                     >

@@ -97,7 +97,7 @@ const App = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="container mx-auto py-10">
+      <div className="container py-10 mx-auto">
         <AddItem handleAdd={addItem} content={content} setContent={setContent} />
         <div className="flex py-4 justify-evenly">
           <Card
