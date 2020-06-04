@@ -7,6 +7,7 @@ import Card from './Card.jsx';
 const MainContainer = ({ itemsDummy }) => {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || itemsDummy);
   const [content, setContent] = useState('');
+  const [destination, setDestination] = useState('');
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
@@ -63,22 +64,62 @@ const MainContainer = ({ itemsDummy }) => {
     itemsCopy[itemIndex].isHovering = hover;
     setItems(itemsCopy);
   };
-  return (
-    <div className="container py-10 mx-auto">
-      <AddItem handleAdd={addItem} content={content} setContent={setContent} />
-      <div className="flex py-4 justify-evenly">
-        <Card
-          items={items}
-          title="Paris Trip"
-          handleHover={handleMouseHover}
-          handleEdit={handleItemEdit}
-          handleDelete={handleItemDelete}
-          toggleEditInput={toggleEditInput}
-          toggleCheck={toggleCheck}
-        />
+
+  const handleDestinationChange = (event) => {
+    console.log('event-target.value is ->', event.target.value);
+    setDestination(event.target.value);
+  };
+
+  const handleDestinationSubmit = (event) => {
+    event.preventDefault();
+    setDestination(event.target.value);
+  };
+
+  if (items.length) {
+    return (
+      <div className="container py-10 mx-auto">
+        <AddItem handleAdd={addItem} content={content} setContent={setContent} />
+        <div className="flex py-4 justify-evenly">
+          <Card
+            items={items}
+            title={destination}
+            handleHover={handleMouseHover}
+            handleEdit={handleItemEdit}
+            handleDelete={handleItemDelete}
+            toggleEditInput={toggleEditInput}
+            toggleCheck={toggleCheck}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="flex justify-center w-4/5 max-w-md mx-auto mt-24">
+        <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
+          <label htmlFor="destination" className="block mb-2 text-lg font-bold text-gray-700">
+            Where will your next destination be?
+            <br className="m-0" />
+            <span className="text-xs font-normal leading-none text-gray-700">You can always edit this later!</span>
+          </label>
+          <input
+            value={destination}
+            onChange={handleDestinationChange}
+            id="destination"
+            name="destination"
+            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow-sm appearance-none dow focus:outline-none focus:shadow-outline"
+            type="text"
+            placeholder="Location"
+          />
+          <button
+            onClick={(e) => handleDestinationSubmit(e)}
+            className="w-full py-2 mt-4 text-white bg-green-400 rounded shadow-md hover:bg-green-500"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    );
+  }
 };
 
 export default MainContainer;
