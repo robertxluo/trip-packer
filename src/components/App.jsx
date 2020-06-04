@@ -37,7 +37,7 @@ const itemsDummy = [
 
 const App = () => {
   return (
-    <div className="">
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
       <Router>
         <Home path="/">Home</Home>
