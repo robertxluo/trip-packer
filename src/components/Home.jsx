@@ -14,7 +14,7 @@ const Home = () => {
             the perfect trip packer for you.
           </p>
           <Link to="main">
-            <button className="inline-block px-5 py-3 mx-8 my-4 mb-4 text-sm font-semibold text-gray-100 bg-green-400 border-0 rounded-lg shadow-lg upp center focus:outline-none hover:bg-green-500">
+            <button className="inline-block px-5 py-3 mx-8 my-4 mb-4 text-sm font-semibold text-gray-100 bg-green-400 border-0 rounded-lg shadow-lg upp center focus:outline-none focus:shadow-outline hover:bg-green-300">
               Get Started
             </button>
           </Link>
