@@ -8,6 +8,7 @@ const MainContainer = ({ itemsDummy }) => {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || itemsDummy);
   const [content, setContent] = useState('');
   const [destination, setDestination] = useState('');
+  const [newDestination, setNewDestination] = useState('');
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
@@ -66,16 +67,15 @@ const MainContainer = ({ itemsDummy }) => {
   };
 
   const handleDestinationChange = (event) => {
-    console.log('event-target.value is ->', event.target.value);
-    setDestination(event.target.value);
+    setNewDestination(event.target.value);
   };
 
   const handleDestinationSubmit = (event) => {
     event.preventDefault();
-    setDestination(event.target.value);
+    setDestination(newDestination);
   };
 
-  if (items.length) {
+  if (items.length || destination) {
     return (
       <div className="container py-10 mx-auto">
         <AddItem handleAdd={addItem} content={content} setContent={setContent} />
@@ -95,15 +95,15 @@ const MainContainer = ({ itemsDummy }) => {
   } else {
     return (
       <div className="flex justify-center w-4/5 max-w-md mx-auto mt-24">
-        <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
+        <form onSubmit={handleDestinationSubmit} className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
           <label htmlFor="destination" className="block mb-2 text-lg font-bold text-gray-700">
             Where will your next destination be?
             <br className="m-0" />
             <span className="text-xs font-normal leading-none text-gray-700">You can always edit this later!</span>
           </label>
           <input
-            value={destination}
             onChange={handleDestinationChange}
+            autoComplete="off"
             id="destination"
             name="destination"
             className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow-sm appearance-none dow focus:outline-none focus:shadow-outline"
