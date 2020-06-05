@@ -16,6 +16,7 @@
     "postcss-import": "^12.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-draggable": "^4.4.2",
     "react-hot-loader": "^4.12.21",
     "react-id-generator": "^3.0.0"
   },
