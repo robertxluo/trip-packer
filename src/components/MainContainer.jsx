@@ -7,11 +7,12 @@ import Card from './Card.jsx';
 const MainContainer = ({ itemsDummy }) => {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || itemsDummy);
   const [content, setContent] = useState('');
-  const [destination, setDestination] = useState('');
+  const [destination, setDestination] = useState(JSON.parse(localStorage.getItem('destination')) || '');
   const [newDestination, setNewDestination] = useState('');
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
+    localStorage.setItem('destination', JSON.stringify(destination));
   }, [items]);
 
   const addItem = (event) => {
@@ -73,13 +74,14 @@ const MainContainer = ({ itemsDummy }) => {
   const handleDestinationSubmit = (event) => {
     event.preventDefault();
     setDestination(newDestination);
+    setNewDestination('');
   };
 
   if (items.length || destination) {
     return (
       <div className="container py-10 mx-auto">
         <AddItem handleAdd={addItem} content={content} setContent={setContent} />
-        <div className="flex py-4 justify-evenly">
+        <div className="flex py-4 mt-10 justify-evenly">
           <Card
             items={items}
             title={destination}
