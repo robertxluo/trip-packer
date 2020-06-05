@@ -15,7 +15,7 @@ const AddItem = ({ handleAdd, content, setContent }) => {
       <button
         type="submit"
         onClick={(event) => handleAdd(event)}
-        className="items-center hidden px-5 py-3 mt-4 ml-2 text-base text-white bg-green-400 border-0 rounded-lg shadow-md hover:bg-green-500 md:block focus:outline-none hover:bg-green-300 md:mt-0"
+        className="items-center hidden px-5 py-3 mt-4 ml-2 text-base text-white bg-green-400 border-0 rounded-lg shadow-md hover:bg-green-300 active:bg-green-500 md:block focus:outline-none md:mt-0"
       >
         Add
       </button>

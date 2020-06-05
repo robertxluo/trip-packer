@@ -11,10 +11,10 @@ const Home = () => {
           <h1 className="px-8 mt-8 text-4xl font-bold text-center text-gray-800">Never Forget Your Stuff</h1>
           <p className="max-w-md px-8 my-4 text-lg font-semibold text-center text-gray-700 md:text-left">
             Going on a business trip in Los Angeles, visiting the temples in Kyoto, or going on a road trip-no matter where you want to go. We have
-            the perfect trip packer for you.
+            the perfect trip packer helper for you.
           </p>
           <Link to="main">
-            <button className="inline-block px-5 py-3 mx-8 my-4 mb-4 text-sm font-semibold text-gray-100 bg-green-400 border-0 rounded-lg shadow-lg upp center focus:outline-none focus:shadow-outline hover:bg-green-300">
+            <button className="inline-block px-5 py-3 mx-8 my-4 mb-4 text-sm font-semibold text-gray-100 bg-green-400 border-0 rounded-lg shadow-lg active:bg-green-500 upp center focus:outline-none focus:shadow-outline hover:bg-green-300">
               Get Started
             </button>
           </Link>
