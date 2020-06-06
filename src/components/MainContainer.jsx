@@ -74,6 +74,7 @@ const MainContainer = () => {
   const handleDestinationSubmit = (event) => {
     event.preventDefault();
     setDestination(newDestination);
+    localStorage.setItem('destination', newDestination);
     setNewDestination('');
   };
 
