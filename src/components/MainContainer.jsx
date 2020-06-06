@@ -4,15 +4,15 @@ import nextId from 'react-id-generator';
 import AddItem from './AddItem.jsx';
 import Card from './Card.jsx';
 
-const MainContainer = ({ itemsDummy }) => {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || itemsDummy);
+const MainContainer = () => {
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [content, setContent] = useState('');
   const [destination, setDestination] = useState(JSON.parse(localStorage.getItem('destination')) || '');
   const [newDestination, setNewDestination] = useState('');
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
-    localStorage.setItem('destination', JSON.stringify(destination));
+    localStorage.setItem('destination', destination);
   }, [items]);
 
   const addItem = (event) => {
