@@ -41,7 +41,7 @@ const App = () => {
       <Navbar />
       <Router>
         <Home path="/">Home</Home>
-        <MainContainer path="main" itemsDummy={itemsDummy} />
+        <MainContainer path="main" />
       </Router>
     </div>
   );
