@@ -7,7 +7,7 @@ import Card from './Card.jsx';
 const MainContainer = () => {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) || []);
   const [content, setContent] = useState('');
-  const [destination, setDestination] = useState(JSON.parse(localStorage.getItem('destination')) || '');
+  const [destination, setDestination] = useState(localStorage.getItem('destination') || '');
   const [newDestination, setNewDestination] = useState('');
 
   useEffect(() => {
