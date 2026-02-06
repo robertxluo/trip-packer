@@ -6,8 +6,8 @@
   "author": "Robert Luo <robertxluo@gmail.com>",
   "scripts": {
     "start": "node server.js",
-    "build": "NODE_ENV=production npm run build:css && webpack --mode=production",
-    "dev": "NODE_ENV=development npm run watch:css && webpack-dev-server --open",
+    "build": "NODE_ENV=production NODE_OPTIONS=--openssl-legacy-provider npm run build:css && NODE_OPTIONS=--openssl-legacy-provider webpack --mode=production",
+    "dev": "NODE_ENV=development NODE_OPTIONS=--openssl-legacy-provider npm run watch:css && NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server --open",
     "build:css": "postcss src/assets/styles/tailwind.css -o src/assets/styles/main.css",
     "watch:css": "postcss src/assets/styles/tailwind.css -o src/assets/styles/main.css"
   },

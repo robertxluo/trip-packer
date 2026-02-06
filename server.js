@@ -9,6 +9,6 @@ app.use('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public/index.html'));
 });
 
-const PORT = 5000;
+const PORT = 1337;
 
 app.listen(PORT, () => console.log(`Port running on ${PORT}`));
