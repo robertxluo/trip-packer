@@ -23,7 +23,6 @@ const MainContainer = () => {
       date: new Date(),
       checked: false,
       edit: false,
-      isHovering: false,
     };
     setItems(items.concat(newItem));
     setContent('');
@@ -47,6 +46,13 @@ const MainContainer = () => {
     const itemsCopy = [...items];
     const item = itemsCopy.find((obj) => obj.id === itemId);
     const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
+
+    // If we are currently editing and the content is empty, delete the item
+    if (item.edit && item.content.trim() === '') {
+      handleItemDelete(itemId);
+      return;
+    }
+
     itemsCopy[itemIndex].edit = !itemsCopy[itemIndex].edit;
     setItems(itemsCopy);
   };
@@ -59,13 +65,7 @@ const MainContainer = () => {
     setItems(itemsCopy);
   };
 
-  const handleMouseHover = (itemId, hover) => {
-    const itemsCopy = [...items];
-    const item = itemsCopy.find((obj) => obj.id === itemId);
-    const itemIndex = itemsCopy.map((obj) => obj.id).indexOf(item.id);
-    itemsCopy[itemIndex].isHovering = hover;
-    setItems(itemsCopy);
-  };
+  /* handleMouseHover function removed */
 
   const handleDestinationChange = (event) => {
     setNewDestination(event.target.value);
@@ -80,13 +80,12 @@ const MainContainer = () => {
 
   if (items.length || destination) {
     return (
-      <div className="container py-10 mx-auto">
+      <div className="mx-auto py-10 container">
         <AddItem handleAdd={addItem} content={content} setContent={setContent} />
-        <div className="flex py-4 mt-10 justify-evenly">
+        <div className="flex justify-evenly mt-10 py-4">
           <Card
             items={items}
             title={destination}
-            handleHover={handleMouseHover}
             handleEdit={handleItemEdit}
             handleDelete={handleItemDelete}
             toggleEditInput={toggleEditInput}
@@ -97,25 +96,25 @@ const MainContainer = () => {
     );
   } else {
     return (
-      <div className="flex justify-center w-4/5 max-w-md mx-auto mt-24">
-        <form onSubmit={handleDestinationSubmit} className="px-8 pt-6 pb-8 mb-4 bg-white rounded-lg shadow-md">
-          <label htmlFor="destination" className="block mb-2 text-lg font-bold text-gray-700">
+      <div className="flex justify-center mx-auto mt-24 w-4/5 max-w-md">
+        <form onSubmit={handleDestinationSubmit} className="bg-white shadow-md mb-4 px-8 pt-6 pb-8 rounded-lg">
+          <label htmlFor="destination" className="block mb-2 font-bold text-gray-700 text-lg">
             Where will your next destination be?
             <br className="m-0" />
-            <span className="text-xs font-normal leading-none text-gray-700">You can always edit this later!</span>
+            <span className="font-normal text-gray-700 text-xs leading-none">You can always edit this later!</span>
           </label>
           <input
             onChange={handleDestinationChange}
             autoComplete="off"
             id="destination"
             name="destination"
-            className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow-sm appearance-none dow focus:outline-none focus:shadow-outline"
+            className="shadow-sm px-3 py-2 border rounded focus:shadow-outline focus:outline-none w-full text-gray-700 leading-tight appearance-none dow"
             type="text"
             placeholder="Location"
           />
           <button
             onClick={(e) => handleDestinationSubmit(e)}
-            className="w-full py-2 mt-4 text-white bg-green-400 rounded shadow-md hover:bg-green-500"
+            className="bg-green-400 hover:bg-green-500 shadow-md mt-4 py-2 rounded w-full text-white"
           >
             Submit
           </button>

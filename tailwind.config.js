@@ -3,6 +3,7 @@ module.exports = {
   theme: {},
   variants: {
     backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+    visibility: ['responsive', 'group-hover'],
   },
   plugins: [],
 };

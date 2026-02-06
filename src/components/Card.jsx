@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 
 const Title = ({ text }) => {
-  return <h1 className="mb-2 text-xl font-bold text-center">{text}</h1>;
+  return <h1 className="mb-2 font-bold text-xl text-center">{text}</h1>;
 };
 
 const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditInput, toggleCheck }) => {
@@ -18,21 +18,16 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
 
   return (
     <Draggable>
-      <div className="w-1/2 max-w-full overflow-hidden bg-green-200 rounded shadow-lg cursor-pointer">
+      <div className="bg-green-200 shadow-lg rounded w-1/2 max-w-full overflow-hidden cursor-pointer">
         <div className="px-6 py-4">
           <form>
             <Title text={title} />
             <ul>
               {items.map((item) => {
-                {
-                  item.content === '' && !item.edit && deleteIfEmpty(item.id);
-                }
                 const lineThrough = item.checked ? 'line-through cursor-pointer text-lg' : 'cursor-pointer text-lg';
                 return (
                   <li
-                    onMouseEnter={() => handleHover(item.id, true)}
-                    onMouseLeave={() => handleHover(item.id, false)}
-                    className="flex items-center mb-2"
+                    className="group flex items-center mb-2 h-10"
                     key={item.id}
                   >
                     {!item.edit && (
@@ -44,39 +39,43 @@ const Card = ({ items, title, handleEdit, handleDelete, handleHover, toggleEditI
                       />
                     )}
                     {!item.edit && (
-                      <div onClick={() => toggleEditInput(item.id)} className={lineThrough}>
+                      <div onClick={() => toggleEditInput(item.id)} className={`flex-grow ${lineThrough}`}>
                         {item.content}
                       </div>
                     )}
                     {item.edit && (
                       <input
                         autoFocus
-                        className="w-full px-3 py-1 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        className="shadow px-3 py-1 border rounded focus:shadow-outline focus:outline-none w-full text-gray-700 leading-tight appearance-none"
                         value={item.content}
-                        onKeyPress={(event) => handleKeyPress(event, item.id)}
-                        onChange={() => handleEdit(item.id, event)}
+                        onFocus={(e) => e.target.select()}
+                        onKeyDown={(event) => handleKeyPress(event, item.id)}
+                        onChange={(event) => handleEdit(item.id, event)}
+                        onBlur={() => toggleEditInput(item.id)}
                       />
                     )}
-                    {(item.isHovering || item.edit) && (
-                      <>
+                    {!item.edit && (
+                      <div className="invisible group-hover:visible flex items-center ml-auto">
                         <svg
                           onClick={() => toggleEditInput(item.id)}
-                          className="w-4 h-4 ml-2 cursor-pointer"
+                          className="ml-2 w-4 h-4 text-gray-600 hover:text-gray-800 cursor-pointer"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
+                          fill="currentColor"
                         >
-                          <path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z" />
+                          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                         </svg>
 
                         <svg
                           onClick={() => handleDelete(item.id)}
-                          className="w-4 h-4 ml-2 cursor-pointer"
+                          className="ml-2 w-4 h-4 text-red-600 hover:text-red-800 cursor-pointer"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
+                          fill="currentColor"
                         >
-                          <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z" />
+                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
-                      </>
+                      </div>
                     )}
                   </li>
                 );
